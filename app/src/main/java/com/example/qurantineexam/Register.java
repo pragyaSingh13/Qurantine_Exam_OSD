@@ -79,7 +79,7 @@ public class Register extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(com.example.hackt2.Register.this, LogIn.class));
+                startActivity(new Intent(Register.this, LogIn.class));
             }
         });
 
@@ -143,7 +143,7 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(com.example.hackt2.Register.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, "Uploaded", Toast.LENGTH_SHORT).show();
                             taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(
                                     new OnCompleteListener<Uri>() {
                                         @Override
@@ -158,7 +158,7 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(com.example.hackt2.Register.this, "Oops something went wrong! ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, "Oops something went wrong! ", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -208,14 +208,14 @@ public class Register extends AppCompatActivity {
                 mDatabase.child("users").child("image link").setValue(img_Url);
                 mDatabase.child("users").child("email").setValue(mail);*/
 
-                Toast.makeText(com.example.hackt2.Register.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(com.example.hackt2.Register.this, LogIn.class));
+                Toast.makeText(Register.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Register.this, LogIn.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Toast.makeText(com.example.hackt2.Register.this, "Oops something went wrong!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register.this, "Oops something went wrong!", Toast.LENGTH_SHORT).show();
 
             }
         });

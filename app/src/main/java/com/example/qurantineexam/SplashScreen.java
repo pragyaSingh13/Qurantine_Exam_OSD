@@ -29,10 +29,10 @@ public class SplashScreen extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     if(FirebaseAuth.getInstance().getCurrentUser() !=null) {
-                        startActivity(new Intent(com.example.hackt2.SplashScreen.this,
+                        startActivity(new Intent(SplashScreen.this,
                                 LogIn.class));
                     }else{
-                        startActivity(new Intent(com.example.hackt2.SplashScreen.this, DashboardAct.class));
+                        startActivity(new Intent(SplashScreen.this, DashboardAct.class));
                     }
                     finish();
                 }
