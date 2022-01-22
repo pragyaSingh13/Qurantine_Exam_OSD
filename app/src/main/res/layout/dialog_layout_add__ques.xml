@@ -71,18 +71,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
+
             <ImageView
+                android:id="@+id/mic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mic_icon"
                 android:layout_marginLeft="30dp"
-                />
+                android:clickable="true"
+                android:src="@drawable/mic_icon" />
+
             <ImageView
-                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/camera_icon"
-                />
+                android:layout_marginLeft="5dp"
+                android:clickable="true"
+                android:src="@drawable/camera_icon" />
         </LinearLayout>
 
 
