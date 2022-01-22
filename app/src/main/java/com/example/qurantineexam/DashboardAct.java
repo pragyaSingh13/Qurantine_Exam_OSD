@@ -52,7 +52,7 @@ public class DashboardAct extends AppCompatActivity {
                 next.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Dialog dialog1=new Dialog(com.example.hackt2.DashboardAct.this);
+                        Dialog dialog1=new Dialog(DashboardAct.this);
                         dialog1.setContentView(R.layout.dialog_layout_dialog_2);
                         dialog1.setCanceledOnTouchOutside(true);
                         Button next2=dialog1.findViewById(R.id.uploadBtn2);
@@ -62,7 +62,7 @@ public class DashboardAct extends AppCompatActivity {
                             public void onClick(View view) {
                                 Keys=Key.getText().toString();
                                 passwords=passwrd.getText().toString();
-                                Intent intent=new Intent(com.example.hackt2.DashboardAct.this,AddQuesact.class);
+                                Intent intent=new Intent(DashboardAct.this,AddQuesact.class);
                                 startActivity(intent);
 //                                startActivity(new Intent(DashboardAct.this,AddQuesact.class));
                             }

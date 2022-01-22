@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QuesAdapter extends FirebaseRecyclerAdapter<QuestionModel, com.example.hackt2.QuesAdapter.myviewholder> {
+public class QuesAdapter extends FirebaseRecyclerAdapter<QuestionModel, com.example.qurantineexam.QuesAdapter.myviewholder> {
 
 
     public QuesAdapter(@NonNull FirebaseRecyclerOptions<QuestionModel> options) {

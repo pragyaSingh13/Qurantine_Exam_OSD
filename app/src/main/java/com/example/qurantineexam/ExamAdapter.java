@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class ExamAdapter extends FirebaseRecyclerAdapter<QuestionModel, com.example.hackt2.ExamAdapter.myviewholder> {
+public class ExamAdapter extends FirebaseRecyclerAdapter<QuestionModel, ExamAdapter.myviewholder> {
 
     public ExamAdapter(@NonNull FirebaseRecyclerOptions<QuestionModel> options) {
         super(options);

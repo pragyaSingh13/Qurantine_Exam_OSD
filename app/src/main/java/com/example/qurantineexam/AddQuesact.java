@@ -46,7 +46,7 @@ public class AddQuesact extends AppCompatActivity {
         addquesfloat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog d= new Dialog(com.example.hackt2.AddQuesact.this);
+                Dialog d= new Dialog(AddQuesact.this);
                 d.setContentView(R.layout.dialog_layout_add__ques);
                 d.setCanceledOnTouchOutside(false);
                 EditText Question=d.findViewById(R.id.rET);
