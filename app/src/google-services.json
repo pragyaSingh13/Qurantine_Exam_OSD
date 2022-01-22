@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "420715840161",
+    "firebase_url": "https://project2-c484e-default-rtdb.firebaseio.com",
+    "project_id": "project2-c484e",
+    "storage_bucket": "project2-c484e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420715840161:android:39b3c0fd80c22e052766e0",
+        "android_client_info": {
+          "package_name": "com.example.qurantineexam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420715840161-qpjigdvu6tkn0nqd1gl6slv5hbesr5q4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf3OFEsqeeyg0kc8XXJNii--7bBJQLYUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420715840161-qpjigdvu6tkn0nqd1gl6slv5hbesr5q4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
