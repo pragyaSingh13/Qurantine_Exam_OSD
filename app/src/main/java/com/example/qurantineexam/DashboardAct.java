@@ -40,7 +40,7 @@ public class DashboardAct extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent intent = new Intent(DashboardAct.this, StudentDetails.class);
                         intent.putExtra("key", key.getText().toString());
-                        intent.putExtra("pass", pass.getText().toString());// if its int type
+                        intent.putExtra("pass", pass.getText().toString());
                         startActivity(intent);
                     }
                 });
