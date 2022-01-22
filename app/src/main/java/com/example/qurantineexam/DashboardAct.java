@@ -1,5 +1,8 @@
 package com.example.qurantineexam;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +10,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import android.widget.Toast;
 
 public class DashboardAct extends AppCompatActivity {
     ConstraintLayout createExam,AttemptExam;
-    public static String Keys,passwords;
+    public static String Keys,Keyr,passwords;
     EditText Key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,8 @@ public class DashboardAct extends AppCompatActivity {
                 next.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        Keyr=keyr.getText().toString();
+                        startActivity(new Intent(DashboardAct.this,ExamAct.class));
                     }
                 });
             }
@@ -43,7 +45,7 @@ public class DashboardAct extends AppCompatActivity {
         createExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog=new Dialog(com.example.qurantineexam.DashboardAct.this);
+                Dialog dialog=new Dialog(DashboardAct.this);
                 dialog.setContentView(R.layout.dialog_create_dialog_1);
                 dialog.setCanceledOnTouchOutside(true);
                 Button next=dialog.findViewById(R.id.uploadBtn);
