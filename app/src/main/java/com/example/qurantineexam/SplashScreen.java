@@ -28,7 +28,7 @@ public class SplashScreen extends AppCompatActivity {
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 } finally {
-                    if(FirebaseAuth.getInstance().getCurrentUser() !=null) {
+                    if(FirebaseAuth.getInstance().getCurrentUser() ==null) {
                         startActivity(new Intent(SplashScreen.this,
                                 LogIn.class));
                     }else{

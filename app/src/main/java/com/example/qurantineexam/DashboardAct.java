@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class DashboardAct extends AppCompatActivity {
-    ConstraintLayout createExam,AttemptExam;
+    ConstraintLayout createExam,AttemptExam, checkAnswer;
     public static String Keys,Keyr,passwords;
     EditText Key;
     @Override
@@ -24,6 +24,28 @@ public class DashboardAct extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         createExam=findViewById(R.id.layoutforcreateExam);
         AttemptExam=findViewById(R.id.layoutattemptcreateExam);
+        checkAnswer = findViewById(R.id.layoutgetanswersheet);
+
+        checkAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog=new Dialog(DashboardAct.this);
+                dialog.setContentView(R.layout.dialog_keypass);
+                EditText key = dialog.findViewById(R.id.acesskey);
+                EditText pass = dialog.findViewById(R.id.password);
+                Button next = dialog.findViewById(R.id.upload_btn);
+                dialog.show();
+                next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(DashboardAct.this, StudentDetails.class);
+                        intent.putExtra("key", key.getText().toString());
+                        intent.putExtra("pass", pass.getText().toString());// if its int type
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
         AttemptExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
