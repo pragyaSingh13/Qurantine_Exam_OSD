@@ -1,4 +1,4 @@
-/*package com.example.qurantineexam;
+package com.example.qurantineexam;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,4 +43,4 @@ public class SplashScreen extends AppCompatActivity {
 
 
     }
-}*/
+}

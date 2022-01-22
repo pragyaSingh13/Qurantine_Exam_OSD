@@ -25,7 +25,7 @@ public class StudentDetails extends AppCompatActivity {
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference(DashboardAct.Keyr);
-        FirebaseRecyclerOptions<Smodel> options=new FirebaseRecyclerOptions.Builder<Smodel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference(DashboardAct.Keyr).child())
+     //   FirebaseRecyclerOptions<Smodel> options=new FirebaseRecyclerOptions.Builder<Smodel>()
+     //           .setQuery(FirebaseDatabase.getInstance().getReference(DashboardAct.Keyr).child())
     }
 }

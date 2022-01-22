@@ -1,4 +1,4 @@
-/*package com.example.qurantineexam;
+package com.example.qurantineexam;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -208,7 +208,7 @@ public class Register extends AppCompatActivity {
                 mDatabase.child("users").child("image link").setValue(img_Url);
                 mDatabase.child("users").child("email").setValue(mail);*/
 
-            /*    Toast.makeText(Register.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+               Toast.makeText(Register.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Register.this, LogIn.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -222,5 +222,5 @@ public class Register extends AppCompatActivity {
 
     }
 
-    }*/
+    }
 
