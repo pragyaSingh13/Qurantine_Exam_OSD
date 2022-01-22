@@ -51,7 +51,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
-        android:src="@drawable/camera_icon"
+
         android:tint="#BDBDBC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
