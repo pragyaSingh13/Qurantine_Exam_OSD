@@ -40,7 +40,7 @@ public class LogIn extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(com.example.hackt2.LogIn.this, Register.class));
+                startActivity(new Intent(LogIn.this, Register.class));
             }
         });
 
@@ -73,13 +73,13 @@ public class LogIn extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(com.example.hackt2.LogIn.this, "Authentication successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogIn.this, "Authentication successful", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(com.example.hackt2.LogIn.this,DashboardAct.class));
+                            startActivity(new Intent(LogIn.this,DashboardAct.class));
                             // updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(com.example.hackt2.LogIn.this, "Authentication failed.",
+                            Toast.makeText(LogIn.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             // updateUI(null);
                         }
