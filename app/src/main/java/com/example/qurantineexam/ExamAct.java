@@ -1,6 +1,7 @@
 package com.example.qurantineexam;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,21 +16,27 @@ public class ExamAct extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ExamAdapter adapter;
+    EditText StudName, StudRoll;
+    public static String studentn,studentr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
         recyclerView=findViewById(R.id.quesrecycle);
+        StudName=findViewById(R.id.namestud);
+        StudRoll=findViewById(R.id.rollstud);
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference(DashboardAct.Keyr);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<QuestionModel> options=new FirebaseRecyclerOptions.Builder<QuestionModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference(DashboardAct.Keyr),QuestionModel.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference(DashboardAct.Keyr).child("Questions"),QuestionModel.class)
                 .build();
         adapter=new ExamAdapter(options);
         recyclerView.setAdapter(adapter);
+        studentn=StudName.getText().toString();
+        studentr=StudRoll.getText().toString();
 
 
     }

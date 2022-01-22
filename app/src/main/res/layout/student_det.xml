@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <LinearLayout android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="300dp" android:background="@drawable/dialog_bg_2" android:paddingTop="5dp" android:paddingRight="16dp" android:paddingLeft="16dp" android:paddingBottom="16dp">
+
+    <!--inner components-->
+
+
+    <EditText android:layout_height="40dp" android:layout_width="200dp" android:background="@drawable/edit_text_bg" android:textSize="14sp" android:textColor="@color/black" android:hint="Enter name" android:gravity="center" android:layout_gravity="center" android:layout_margin="10dp" android:id="@+id/studnames"/>
+
+    <EditText android:id="@+id/studrollnos" android:layout_height="40dp" android:layout_width="200dp" android:background="@drawable/edit_text_bg" android:textSize="14sp" android:textColor="@color/black" android:hint="Enter rollno" android:gravity="center" android:layout_gravity="center" android:layout_margin="10dp" android:inputType="textPassword"/>
+
+    <Button android:layout_height="40dp" android:layout_width="100dp" android:background="@drawable/btn2_bg" android:textSize="14sp" android:textColor="#EFD10C" android:layout_gravity="center" android:text="NEXT" android:layout_marginTop="33dp" android:id="@+id/uploadBtn5"/>
+
+</LinearLayout>
+
+</LinearLayout>

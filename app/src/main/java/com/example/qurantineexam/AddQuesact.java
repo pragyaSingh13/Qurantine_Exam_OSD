@@ -15,6 +15,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Random;
+
 public class AddQuesact extends AppCompatActivity {
     FloatingActionButton addquesfloat;
     FirebaseDatabase firebaseDatabase;
@@ -38,7 +40,7 @@ public class AddQuesact extends AppCompatActivity {
         quesrecycles.setHasFixedSize(true);
         quesrecycles.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<QuestionModel> options= new FirebaseRecyclerOptions.Builder<QuestionModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference(DashboardAct.Keys),QuestionModel.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference(DashboardAct.Keys).child("Questions"),QuestionModel.class)
                 .build();
         adapter=new QuesAdapter(options);
         quesrecycles.setAdapter(adapter);
@@ -58,8 +60,8 @@ public class AddQuesact extends AppCompatActivity {
                         String ques=Question.getText().toString();
                         String mark=Marks.getText().toString();
                         QuestionModel obj=new QuestionModel(ques,mark);
-                        databaseReference.child("ques"+i).setValue(obj);
-                        i++;
+                        databaseReference.child("Questions").child("ques"+new Random().nextInt(100000)).setValue(obj);
+
 
                     }
                 });

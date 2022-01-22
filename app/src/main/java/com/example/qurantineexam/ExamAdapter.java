@@ -1,5 +1,6 @@
 package com.example.qurantineexam;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,15 @@ public class ExamAdapter extends FirebaseRecyclerAdapter<QuestionModel, ExamAdap
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull QuestionModel model) {
         holder.question.setText(model.getQuestion());
-        holder.question.setText("M:"+model.getQuestion());
+        holder.marks.setText("M:"+model.getMarks());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(holder.marks.getContext(),AnswerAct.class);
+                intent.putExtra("Question",model.getQuestion());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @NonNull

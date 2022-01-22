@@ -53,7 +53,7 @@ public class QuesAdapter extends FirebaseRecyclerAdapter<QuestionModel, com.exam
                         Map<String,Object> map=new HashMap<>();
                         map.put("question",Question.getText().toString());
                         map.put("marks",Marks.getText().toString());
-                        FirebaseDatabase.getInstance().getReference(DashboardAct.Keys).child(getRef(position).getKey()).updateChildren(map)
+                        FirebaseDatabase.getInstance().getReference(DashboardAct.Keys).child("Questions").child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -78,7 +78,7 @@ public class QuesAdapter extends FirebaseRecyclerAdapter<QuestionModel, com.exam
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                FirebaseDatabase.getInstance().getReference(DashboardAct.Keys).child(getRef(position).getKey()).removeValue();
+                                FirebaseDatabase.getInstance().getReference(DashboardAct.Keys).child("Questions").child(getRef(position).getKey()).removeValue();
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
