@@ -15,14 +15,15 @@
         android:background="@drawable/dialog_bg"
         >
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:padding="5dp"
             android:layout_height="wrap_content"
             android:text="Add Question"
+            android:layout_marginTop="15dp"
             android:textColor="@color/black"
             android:background="#EFD10C"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="26sp"
             />
         <LinearLayout
             android:paddingLeft="10dp"
@@ -39,13 +40,14 @@
                 android:layout_marginRight="5dp"
                 android:foregroundGravity="top"
                 android:gravity="top"
+                android:textColor="@color/black"
                 android:text="Q."
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textStyle="bold"></TextView>
 
         <EditText
             android:id="@+id/rET"
-            android:layout_width="172dp"
+            android:layout_width="250dp"
             android:layout_height="189dp"
             android:layout_gravity="top"
             android:background="@color/white"
@@ -61,13 +63,14 @@
             android:textAlignment="textStart"
             android:textColor="@android:color/black"
             android:textColorHint="#6C6C6C"
-            android:textSize="12sp"
+            android:textSize="18sp"
             tools:ignore="RtlCompat" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,7 +120,7 @@
                 android:textAlignment="textStart"
                 android:textColor="@android:color/black"
                 android:textColorHint="#6C6C6C"
-                android:textSize="12sp"
+                android:textSize="18sp"
                 tools:ignore="RtlCompat" /> />
 
             

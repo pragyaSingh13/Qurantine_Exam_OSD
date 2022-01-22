@@ -41,6 +41,7 @@
                 android:foregroundGravity="top"
                 android:gravity="top"
                 android:text="Q."
+                android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"></TextView>
 
@@ -81,6 +82,7 @@
                 android:foregroundGravity="top"
                 android:gravity="top"
                 android:text="A."
+                android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"></TextView>
 

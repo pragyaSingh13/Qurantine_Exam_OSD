@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +32,7 @@ import java.util.Random;
 public class DashboardAct extends AppCompatActivity {
     ConstraintLayout createExam,AttemptExam;
     public static String Keys,Keyr,passwords;
+    ImageView propic;
     EditText Key;
     public static int random;
     FirebaseDatabase firebaseDatabase;
@@ -44,6 +47,9 @@ public class DashboardAct extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         createExam=findViewById(R.id.layoutforcreateExam);
         AttemptExam=findViewById(R.id.layoutattemptcreateExam);
+        updatePfp();
+
+
         firebaseDatabase=FirebaseDatabase.getInstance();
 
         AttemptExam.setOnClickListener(new View.OnClickListener() {
@@ -126,4 +132,24 @@ public class DashboardAct extends AppCompatActivity {
             }
         });
     }
+
+    private void updatePfp(){
+        DatabaseReference getImage = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid()).child("imgUrl");
+        propic = findViewById(R.id.profileimg);
+
+        getImage.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                String link = snapshot.getValue(String.class);
+                Picasso.get().load(link).into(propic);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 }
