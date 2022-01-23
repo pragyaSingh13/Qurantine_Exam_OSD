@@ -34,6 +34,7 @@ public class scancamera extends AppCompatActivity {
     TextView textdata;
     Bitmap bitmap;
     private static final int REQUEST_CAMERA_CODE =100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -54,7 +54,6 @@
             android:text="COPY"
             android:id="@+id/btncopy"
             android:textSize="18sp"
-
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
