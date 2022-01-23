@@ -15,22 +15,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QurantineExam">
-        <activity android:name=".scancamera"></activity>
+        <activity android:name=".scancamera" />
         <activity android:name=".Register" />
         <activity android:name=".LogIn" />
         <activity android:name=".AddQuesact" />
         <activity android:name=".AnswerAct" />
-        <activity android:name=".DashboardAct"></activity>
+        <activity android:name=".DashboardAct" />
         <activity android:name=".ExamAct" />
         <activity android:name=".StudentDetails" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".speechtotext" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" /> <!-- optional (needed if default theme has no action bar) -->
+        <activity android:name=".SplashScreen">
+
+        </activity>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
     </application>
 
 </manifest>
