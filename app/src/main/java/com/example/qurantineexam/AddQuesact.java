@@ -85,7 +85,7 @@ public class AddQuesact extends AppCompatActivity {
                 ImageView camera = d.findViewById(R.id.camera);
                 EditText Question = d.findViewById(R.id.rET);
                 EditText Marks = d.findViewById(R.id.markstext);
-                Button upload = d.findViewById(R.id.uploadBtn);
+                Button upload = d.findViewById(R.id.uploadBtnk);
                 upload.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -100,45 +100,18 @@ public class AddQuesact extends AppCompatActivity {
                 camera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Dialog d = new Dialog(view.getContext());
-                        d.setContentView(R.layout.camera_scan_dialog);
-                        d.setCanceledOnTouchOutside(false);
-
-                          TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-
-
-
-
-                         String stringResult = null;
-                       final SurfaceView surfaceView = findViewById(R.id.surfaceView);
-                        EditText editText = findViewById(R.id.textView);
-                        Button button = findViewById(R.id.button);
-                        textRecognizer(textRecognizer,surfaceView, editText);
-
+                        startActivity(new Intent(AddQuesact.this, scancamera.class));
                     }
                 });
 
                 micimg.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent
-                                = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-                                Locale.getDefault());
-                        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text");
 
-                        try {
-                            startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
-                        } catch (Exception e) {
-                            Toast.makeText(AddQuesact.this, " " + e.getMessage(),
-                                    Toast.LENGTH_SHORT)
-                                    .show();
-                        }
                     }
                 });
                 d.show();
+                d.dismiss();
             }
         });
     }
@@ -167,88 +140,5 @@ public class AddQuesact extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-        final LayoutInflater factory = getLayoutInflater();
-        final View textEntryView = factory.inflate(R.layout.dialog_layout_add__ques, null);
-        EditText edittext = textEntryView.findViewById(R.id.mic);
-
-        if (requestCode == REQUEST_CODE_SPEECH_INPUT) {
-            if (resultCode == RESULT_OK && data != null) {
-                ArrayList<String> result = data.getStringArrayListExtra(
-                        RecognizerIntent.EXTRA_RESULTS);
-                edittext.setText(
-                        Objects.requireNonNull(result).get(0));
-            }
-        }
-    }
-
-
-    private void textRecognizer(TextRecognizer textRecognizer, SurfaceView surfaceView, EditText editText){
-        ActivityCompat.requestPermissions(this, new String[]{CAMERA}, PackageManager.PERMISSION_GRANTED);
-        textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-      CameraSource  cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
-                .setRequestedPreviewSize(1280, 1024)
-                .build();
-
-        surfaceView = findViewById(R.id.surfaceView);
-        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                try {
-                    cameraSource.start(surfaceView.getHolder());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource.stop();
-            }
-        });
-
-
-        textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
-            @Override
-            public void release() {
-            }
-
-            @Override
-            public void receiveDetections(Detector.Detections<TextBlock> detections) {
-
-                SparseArray<TextBlock> sparseArray = detections.getDetectedItems();
-                StringBuilder stringBuilder = new StringBuilder();
-
-                for (int i = 0; i<sparseArray.size(); ++i){
-                    TextBlock textBlock = sparseArray.valueAt(i);
-                    if (textBlock != null && textBlock.getValue() !=null){
-                        stringBuilder.append(textBlock.getValue() + " ");
-                    }
-                }
-
-                final String stringText = stringBuilder.toString();
-
-                Handler handler = new Handler(Looper.getMainLooper());
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                       String stringResult = stringText;
-                        resultObtained(stringResult, editText);
-                    }
-                });
-            }
-        });
-    }
-    private void resultObtained(String stringResult, EditText editText){
-        editText.setText(stringResult);
-    }
 }
+
