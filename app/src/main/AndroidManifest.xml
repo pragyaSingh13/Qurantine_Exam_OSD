@@ -27,7 +27,9 @@
         <activity
             android:name=".AnswerAct" />
         <activity
-            android:name=".DashboardAct" />
+            android:name=".DashboardAct" >
+
+        </activity>password bata login ka 12345678 h maybe naya acc bana leta hu
         <activity
             android:name=".ExamAct" />
         <activity

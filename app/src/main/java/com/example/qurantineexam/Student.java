@@ -1,5 +1,4 @@
 package com.example.qurantineexam;
-
 public class Student {
     String name,rollno,image;
 

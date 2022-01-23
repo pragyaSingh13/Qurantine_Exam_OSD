@@ -15,6 +15,7 @@ public class StudentDetails extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    StudAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,30 @@ public class StudentDetails extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         firebaseDatabase=FirebaseDatabase.getInstance();
+        databaseReference=firebaseDatabase.getReference(DashboardAct.keyn);
+        FirebaseRecyclerOptions<Smodel> options=new FirebaseRecyclerOptions.Builder<Smodel>()
+                .setQuery(FirebaseDatabase.getInstance().getReference(DashboardAct.keyn).child("Candidates"),Smodel.class)
+                .build();
+        adapter=new StudAdapter(options);
+        recyclerView.setAdapter(adapter);
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.startListening();
         databaseReference=firebaseDatabase.getReference(DashboardAct.Keyr);
      //   FirebaseRecyclerOptions<Smodel> options=new FirebaseRecyclerOptions.Builder<Smodel>()
      //           .setQuery(FirebaseDatabase.getInstance().getReference(DashboardAct.Keyr).child())
