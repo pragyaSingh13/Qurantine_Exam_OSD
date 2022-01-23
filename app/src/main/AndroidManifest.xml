@@ -24,14 +24,14 @@
         <activity android:name=".ExamAct" />
         <activity android:name=".StudentDetails" />
         <activity android:name=".speechtotext" >
+
+        </activity>
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".SplashScreen">
-
         </activity>
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
     </application>
