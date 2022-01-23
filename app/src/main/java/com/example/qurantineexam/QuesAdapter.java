@@ -42,7 +42,7 @@ public class QuesAdapter extends FirebaseRecyclerAdapter<QuestionModel, com.exam
                 dialog.setCanceledOnTouchOutside(true);
                 EditText Question=dialog.findViewById(R.id.rET);
                 EditText Marks=dialog.findViewById(R.id.markstext);
-                Button upload=dialog.findViewById(R.id.uploadBtn);
+                Button upload=dialog.findViewById(R.id.uploadBtnk);
 
                 Question.setText(model.getQuestion());
                 Marks.setText(model.getMarks());
