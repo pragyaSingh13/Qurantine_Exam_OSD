@@ -53,7 +53,6 @@ public class scancamera extends AppCompatActivity {
             public void onClick(View view) {
                 CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(scancamera.this);
 
-
             }
         });
 
@@ -85,9 +84,11 @@ public class scancamera extends AppCompatActivity {
         }
     }
     private void getTextFromImage(Bitmap bitmap){
+        textdata = findViewById(R.id.textdata);
+        copybtn = findViewById(R.id.btncopy);
+        capturebtn = findViewById(R.id.btncapture);
         TextRecognizer recognizer = new TextRecognizer.Builder(this).build();
-        if(recognizer.isOperational()){
-            Toast.makeText(scancamera.this,"Something went wrong", Toast.LENGTH_LONG);
+        if(recognizer.isOperational()){ Toast.makeText(scancamera.this,"Something went wrong", Toast.LENGTH_LONG);
 
         }
 
