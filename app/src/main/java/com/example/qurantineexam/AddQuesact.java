@@ -111,7 +111,6 @@ public class AddQuesact extends AppCompatActivity {
                     }
                 });
                 d.show();
-                d.dismiss();
             }
         });
     }
