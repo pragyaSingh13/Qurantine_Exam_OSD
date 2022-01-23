@@ -1,15 +1,23 @@
 package com.example.qurantineexam;
 
+import android.content.pm.PackageManager;
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.MediaTimestamp;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.speech.RecognizerIntent;
 import android.support.annotation.Nullable;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,14 +25,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.text.TextBlock;
+import com.google.android.gms.vision.text.TextRecognizer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
+
+
 
 public class AddQuesact extends AppCompatActivity {
     FloatingActionButton addquesfloat;
@@ -64,16 +79,41 @@ public class AddQuesact extends AppCompatActivity {
                 d.setContentView(R.layout.dialog_layout_add__ques);
                 d.setCanceledOnTouchOutside(false);
                 ImageView micimg = d.findViewById(R.id.mic);
+                ImageView camera = d.findViewById(R.id.camera);
                 EditText Question = d.findViewById(R.id.rET);
                 EditText Marks = d.findViewById(R.id.markstext);
                 Button upload = d.findViewById(R.id.uploadBtn);
                 upload.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
                         String ques = Question.getText().toString();
                         String mark = Marks.getText().toString();
                         QuestionModel obj = new QuestionModel(ques, mark);
                         databaseReference.child("Questions").child("ques" + new Random().nextInt(100000)).setValue(obj);
+                    }
+                });
+
+                camera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Dialog d = new Dialog(view.getContext());
+                        d.setContentView(R.layout.camera_scan_dialog);
+                        d.setCanceledOnTouchOutside(false);
+
+                          TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+
+                         CameraSource cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
+                                 .setRequestedPreviewSize(1280, 1024)
+                                 .build();;
+
+
+                         String stringResult = null;
+                       final SurfaceView surfaceView = findViewById(R.id.surfaceView);
+                        EditText editText = findViewById(R.id.textView);
+                        Button button = findViewById(R.id.button);
+                        textRecognizer(textRecognizer, cameraSource,surfaceView, editText);
+
                     }
                 });
 
@@ -144,5 +184,69 @@ public class AddQuesact extends AppCompatActivity {
                         Objects.requireNonNull(result).get(0));
             }
         }
+    }
+
+
+    private void textRecognizer(TextRecognizer textRecognizer, CameraSource cameraSource, SurfaceView surfaceView, EditText editText){
+        textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+        cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
+                .setRequestedPreviewSize(1280, 1024)
+                .build();
+
+        surfaceView = findViewById(R.id.surfaceView);
+        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                try {
+                    cameraSource.start(surfaceView.getHolder());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                cameraSource.stop();
+            }
+        });
+
+
+        textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
+            @Override
+            public void release() {
+            }
+
+            @Override
+            public void receiveDetections(Detector.Detections<TextBlock> detections) {
+
+                SparseArray<TextBlock> sparseArray = detections.getDetectedItems();
+                StringBuilder stringBuilder = new StringBuilder();
+
+                for (int i = 0; i<sparseArray.size(); ++i){
+                    TextBlock textBlock = sparseArray.valueAt(i);
+                    if (textBlock != null && textBlock.getValue() !=null){
+                        stringBuilder.append(textBlock.getValue() + " ");
+                    }
+                }
+
+                final String stringText = stringBuilder.toString();
+
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                       String stringResult = stringText;
+                        resultObtained(stringResult, editText);
+                    }
+                });
+            }
+        });
+    }
+    private void resultObtained(String stringResult, EditText editText){
+        editText.setText(stringResult);
     }
 }
