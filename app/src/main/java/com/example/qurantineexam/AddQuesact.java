@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
+import static android.Manifest.permission.CAMERA;
 
 
 
@@ -55,6 +57,7 @@ public class AddQuesact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_add_quesact);
+        ActivityCompat.requestPermissions(this, new String[]{CAMERA}, PackageManager.PERMISSION_GRANTED);
         addquesfloat = findViewById(R.id.addquesfloat);
         quesrecycles = findViewById(R.id.quesrecycle);
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -103,16 +106,14 @@ public class AddQuesact extends AppCompatActivity {
 
                           TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 
-                         CameraSource cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
-                                 .setRequestedPreviewSize(1280, 1024)
-                                 .build();;
+
 
 
                          String stringResult = null;
                        final SurfaceView surfaceView = findViewById(R.id.surfaceView);
                         EditText editText = findViewById(R.id.textView);
                         Button button = findViewById(R.id.button);
-                        textRecognizer(textRecognizer, cameraSource,surfaceView, editText);
+                        textRecognizer(textRecognizer,surfaceView, editText);
 
                     }
                 });
@@ -187,9 +188,10 @@ public class AddQuesact extends AppCompatActivity {
     }
 
 
-    private void textRecognizer(TextRecognizer textRecognizer, CameraSource cameraSource, SurfaceView surfaceView, EditText editText){
+    private void textRecognizer(TextRecognizer textRecognizer, SurfaceView surfaceView, EditText editText){
+        ActivityCompat.requestPermissions(this, new String[]{CAMERA}, PackageManager.PERMISSION_GRANTED);
         textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-        cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
+      CameraSource  cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
                 .setRequestedPreviewSize(1280, 1024)
                 .build();
 
